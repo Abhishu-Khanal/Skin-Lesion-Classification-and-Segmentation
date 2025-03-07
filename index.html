@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Skin Lesion Classification & Segmentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+    <style>
+      body { 
+        font-family: Arial, sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        background-color: white; 
+      }
+      header { 
+        text-align: center; 
+        padding: 20px; 
+        background: #004080; /* Blue background */
+        color: white; 
+      }
+      header img { 
+        width: 100px; 
+      }
+      header h1 { 
+        margin: 10px 0; 
+        font-size: 32px; 
+      }
+      header .subtext { 
+        font-size: 16px; 
+        margin: 2px 0; 
+      }
+      .center { 
+        text-align: center; 
+      }
+      .section { 
+        padding: 20px; 
+      }
+      /* Styling for the project title */
+      .project-title {
+        color: darkblue;
+        font-style: italic;
+        text-decoration: underline;
+      }
+      /* Styling for section headings (made italic) */
+      .section-heading {
+        color: darkblue;
+        font-style: italic;
+      }
+      /* Styling for developer information */
+      .developed-by {
+        font-weight: bold;
+        margin: 10px 0 0 0;
+        color: darkblue;
+      }
+      .developer-names {
+        font-style: italic;
+        margin: 5px 0 0 0;
+        line-height: 1.5;
+      }
+      .upload-section { 
+        border: 2px dashed #ccc; 
+        padding: 40px; 
+        margin: 20px auto; 
+        width: 80%; 
+        text-align: center; 
+        background-color: #e6f0ff; /* light blue background */
+      }
+      .upload-section:hover { 
+        background-color: #d9e6ff; 
+      }
+      a { 
+        color: #004080; 
+      }
+      /* Styling for figures to appear inline */
+      .inline-figure {
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+      }
+      .inline-figure figcaption {
+        font-size: 14px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- College Header -->
+    <header>
+      <img src="{{ url_for('static', filename='college_logo.png') }}" alt="College Logo">
+      <h1>ADVANCED COLLEGE OF ENGINEERING AND MANAGEMENT</h1>
+      <p class="subtext">Balkhu, Kathmandu</p>
+      <p class="subtext">Affiliated to Tribhuvan University</p>
+    </header>
+
+    <!-- Project Title & Developer Information -->
+    <section class="center section">
+      <h2 class="project-title">Minor Project on "Skin Lesion Classification and Segmentation Using CNN And U-Net"</h2>
+      <p class="developed-by">Subject Code:</p>
+      <p class="developer-names">
+        [CT-654]
+      </p>
+      <p class="developed-by">Developed By:</p>
+      <p class="developer-names">
+        Abhishek Kumar Shah (ACE078BCT002)<br>
+        Abhishu Khanal (ACE078BCT003)<br>
+        Arjun Kunwar (ACE078BCT012)
+      </p>
+      <p class="developed-by">Project Supervisors:</p>
+      <p class="developer-names">
+        Er. Laxmi Prasad Bhatt<br>
+        Er. Ukesh Thapa
+      </p>
+    </section>
+
+    <!-- Skin Lesion Information -->
+    <section class="section">
+      <h2 class="section-heading">Skin Lesion</h2>
+      <p>A skin lesion is an abnormal change in the skin that can be benign or malignant. In this project, we focus on 7 classes of lesions:</p>
+      <ul>
+        <li><strong>bkl</strong>: Benign Keratosis-like Lesions – Rough, scaly patches often seen in older individuals.</li>
+        <li><strong>nv</strong>: Melanocytic Nevi – Common moles that are usually benign.</li>
+        <li><strong>df</strong>: Dermatofibroma – Firm nodules that are typically benign.</li>
+        <li><strong>mel</strong>: Melanoma – A malignant tumor of melanocytes, very dangerous if not treated.</li>
+        <li><strong>vasc</strong>: Vascular Lesions – Lesions that arise from blood vessels, typically benign.</li>
+        <li><strong>bcc</strong>: Basal Cell Carcinoma – A common type of skin cancer, usually localized.</li>
+        <li><strong>akiec</strong>: Actinic Keratoses – Rough, scaly patches that may progress to cancer if untreated.</li>
+      </ul>
+      <div class="center">
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='bkl.png') }}" alt="bkl" width="100">
+          <figcaption>bkl</figcaption>
+        </figure>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='nv.png') }}" alt="nv" width="100">
+          <figcaption>nv</figcaption>
+        </figure>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='df.png') }}" alt="df" width="100">
+          <figcaption>df</figcaption>
+        </figure>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='mel.png') }}" alt="mel" width="100">
+          <figcaption>mel</figcaption>
+        </figure>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='vasc.png') }}" alt="vasc" width="100">
+          <figcaption>vasc</figcaption>
+        </figure>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='bcc.png') }}" alt="bcc" width="100">
+          <figcaption>bcc</figcaption>
+        </figure>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='akiec.png') }}" alt="akiec" width="100">
+          <figcaption>akiec</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Classification Information -->
+    <section class="section">
+      <h2 class="section-heading">Classification</h2>
+      <p>Classification involves using a Convolutional Neural Network (CNN) to analyze images and assign them to one of the 7 skin lesion categories. The CNN model used in this project has been evaluated using performance metrics such as accuracy, loss curves, and a confusion matrix.</p>
+      <div class="center">
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='cnn_metrics.png') }}" alt="CNN Performance Metrics" width="450">
+          <figcaption>CNN Performance Metrics</figcaption>
+        </figure>
+        <br>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='cnn_confusion.png') }}" alt="CNN Confusion Matrix" width="450">
+          <figcaption>CNN Confusion Matrix</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Segmentation Information -->
+    <section class="section">
+      <h2 class="section-heading">Segmentation</h2>
+      <p>Segmentation involves using a UNet model to delineate the area of the skin lesion from the background. The UNet model’s performance has been evaluated using segmentation accuracy metrics and a confusion matrix for the pixel-wise predictions.</p>
+      <div class="center">
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='unet_metrics.png') }}" alt="UNet Performance Metrics" width="450">
+          <figcaption>UNet Performance Metrics</figcaption>
+        </figure>
+        <br>
+        <figure class="inline-figure">
+          <img src="{{ url_for('static', filename='unet_confusion.png') }}" alt="UNet Confusion Matrix" width="450">
+          <figcaption>UNet Confusion Matrix</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+      <h2>Upload Image for Classification and Segmentation</h2>
+      <form method="POST" action="/" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <br><br>
+        <input type="submit" value="Upload Image">
+      </form>
+    </section>
+  </body>
+</html>
